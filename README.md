@@ -6,18 +6,19 @@ I have been working on the article Ibrahim I. Taskiran et al. Cell-type-directed
 
 More specifically, I initially created (I use genimi and copilot) two notebooks, which I describe:
 
-## Notebook: https://colab.research.google.com/drive/1vP-hm1Rq-RV6u8DLNqGN9CaxsZTpN067?usp=sharing titled Relevance_nucleotides_shap.ipynb.
+## Notebook titled: Relevance_nucleotides_shap.ipynb.
+https://colab.research.google.com/drive/1vP-hm1Rq-RV6u8DLNqGN9CaxsZTpN067?usp=sharing
 I adapt the example presented in AlphaGneome quick start, selecting the genomic interval chr20: 3753000-3753400 and within it the central interval of length 256 bp. I follow the steps of the example from the AlphaGenome website to obtain the most relevant positions for the model prediction in the ISM interval.
 Next I try to obtain the same result but using the Shap library (Shapley Additive exPlanations), to do this I extract the sequence from the previous ism interval, I provide the context for the application of Shap by randomly selecting 10,000 real sequences of length 256 bp belonging to chromosome 20. The steps followed are:
-**** Define functions for one-hot-encoding of DNA sequences since this format of input variables is supported by Shap. 
-**** Define an additional function that receives the input in one-hot-encodig, converts it to a DNA string sequence, sends that sequence to the AlphaGenome model and adds the prediction obtained for the sequence. The ontology sent to the model is 'EFO:0002067' corresponding to the k562 cell line while the selected output is DNAse (the example of the AlphaGenome quick start notebook has been followed).
-**** To reduce the execution time, the shpa.kmeans function is applied to the context sequences, selecting K=8.
-**** The shap.KernelExplainer functions are applied, with the parameters being the call function to AlphaGenome defined above and the context sequences and the explainer.shap_values ​​function being the parameter now the target dna sequence. The calculation took 42 minutes and I logged 36,260 calls to the predictor function.
-**** AlphaGenome DNAse predictions for the target sequence are calculated.
+- ** Define functions for one-hot-encoding** of DNA sequences since this format of input variables is supported by Shap. 
+- **  Define an additional function that receives the input in one-hot-encodig, converts it to a DNA string sequence**, sends that sequence to the AlphaGenome model and adds the prediction obtained for the sequence. The ontology sent to the model is 'EFO:0002067' corresponding to the k562 cell line while the selected output is DNAse (the example of the AlphaGenome quick start notebook has been followed).
+- **  To reduce the execution time, the shpa.kmeans function is applied to the context sequences, selecting K=8.**
+- **  The shap.KernelExplainer functions are applied**, with the parameters being the call function to AlphaGenome defined above and the context sequences and the explainer.shap_values ​​function being the parameter now the target dna sequence. The calculation took 42 minutes and I logged 36,260 calls to the predictor function.
+- **  AlphaGenome DNAse predictions for the target sequence are calculated**.
 #### The results graphs are presented:	
-***** AlphaGenome prediction values ​​for DNASE of each position, 
-***** Values ​​of the contributions of each position obtained by the ism_score_variants function of AlphaGenome
-***** Values ​​of the contributions of each position obtained with Shap.
+- ***  AlphaGenome prediction values ​​for DNASE of each position***, 
+- ***  Values ​​of the contributions of each position obtained by the ism_score_variants function of AlphaGenome
+- ***  Values ​​of the contributions of each position obtained with Shap.
 #### A reasonable coincidence is observed between the values ​​of the contributions to the prediction obtained with AlphaGenome and those obtained with Shap.
 
 ### Detailed Analysis of SHAP vs ISM Results
