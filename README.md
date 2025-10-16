@@ -34,3 +34,5 @@ The comparison of the top 10 indices from both the AlphaGenome (ISM) and SHAP me
 The lack of common indices between the top 10 AlphaGenome (ISM) contribution indices and the top 20 AlphaGenome prediction value indices further highlights that the interpretation of "importance" can differ depending on the method used (contribution to prediction change vs. absolute prediction value).
 
 Adding this analysis to the introduction will provide a more nuanced understanding of the comparison between the two methods.
+
+## Notebook titled: Relevance_nucleotides_shap_rna_seq.ipynb.
